@@ -99,4 +99,14 @@ class Sutra extends \yii\db\ActiveRecord
 
         ];
     }
+
+    /**
+     * @param $id
+     * @return string
+     */
+    public static function getName($id)
+    {
+        $model = Sutra::findOne($id);
+        return $model ? $model->entity_name_tc : '';
+    }
 }
