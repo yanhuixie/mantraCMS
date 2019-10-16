@@ -4,6 +4,7 @@ use trntv\filekit\widget\Upload;
 use trntv\yii\datetime\DateTimeWidget;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\web\JsExpression;
 
 /**
  * @var $this       yii\web\View
@@ -35,6 +36,7 @@ use yii\helpers\Html;
     [
         'plugins' => ['fullscreen', 'fontcolor', 'video'],
         'options' => [
+            'lang' => 'zh_cn',
             'minHeight' => 400,
             'maxHeight' => 400,
             'buttonSource' => true,

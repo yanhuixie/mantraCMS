@@ -1,4 +1,6 @@
 <?php
+
+use common\models\Func;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -11,7 +13,7 @@ use johnitvn\ajaxcrud\BulkButtonWidget;
 use common\models\Sutra;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\search\MantraSearch */
+/* @var $searchModel frontend\models\search\MantraSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = '咒';
@@ -39,33 +41,81 @@ $dataProvider->pagination->pageSize = 10;
         'method' => 'get',
     ]); ?>
 
-    <?php echo $form->field($searchModel, 'sutra_id')->widget(Select2::classname(), [
-            'initValueText' => Sutra::getName($searchModel->sutra_id), 
-            'options' => ['placeholder' => '输入并查找出处...'],
-            'pluginOptions' => [
-                'allowClear' => true,
-                'minimumInputLength' => 1,
-                'ajax' => [
-                    'url' => Url::to(['/sutra/autocomplete']),
-                    'dataType' => 'json',
-                    'data' => new JsExpression('function(params) { return {q:params.term}; }')
+
+    <div class="row">
+        <div class="col-md-4">
+            <?php echo $form->field($searchModel, 'sutra_id')->widget(Select2::classname(), [
+                'initValueText' => Sutra::getName($searchModel->sutra_id), 
+                'options' => ['placeholder' => '输入并查找出处...'],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'minimumInputLength' => 1,
+                    'ajax' => [
+                        'url' => Url::to(['/sutra/autocomplete']),
+                        'dataType' => 'json',
+                        'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                    ],
+                    'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                    'templateResult' => new JsExpression('function(city) { return city.text; }'),
+                    'templateSelection' => new JsExpression('function (city) { return city.text; }'),
                 ],
-                'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
-                'templateResult' => new JsExpression('function(city) { return city.text; }'),
-                'templateSelection' => new JsExpression('function (city) { return city.text; }'),
-            ],
-        ]);
-    ?>
+            ]); ?>
+        </div>
+        <div class="col-md-4">
+            <?php echo $form->field($searchModel, 'func_id')->widget(Select2::classname(), [
+                'initValueText' => Func::getName($searchModel->func_id), 
+                'options' => ['placeholder' => '输入并查找功能...'],
+                'pluginOptions' => [
+                    'allowClear' => true,
+                    'minimumInputLength' => 1,
+                    'ajax' => [
+                        'url' => Url::to(['/func/autocomplete']),
+                        'dataType' => 'json',
+                        'data' => new JsExpression('function(params) { return {q:params.term}; }')
+                    ],
+                    'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+                    'templateResult' => new JsExpression('function(city) { return city.text; }'),
+                    'templateSelection' => new JsExpression('function (city) { return city.text; }'),
+                ],
+            ]); ?>
+        </div>
+    </div>
 
-    <?php echo $form->field($searchModel, 'cd')->textInput(); ?>
+    <div class="row">
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'entity_name_han')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'entity_name_tb')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'entity_name_sans')->textInput(); ?>
+        </div>
+    </div>
 
-    <?php echo $form->field($searchModel, 'entity_name_han')->textInput(); ?>
+    <div class="row">
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'text_han')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'text_tb')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'text_sans')->textInput(); ?>
+        </div>
+    </div>
 
-    <?php echo $form->field($searchModel, 'text_han')->textInput(); ?>
-
-    <?php echo $form->field($searchModel, 'context')->textInput(); ?>
-
-    <?php echo $form->field($searchModel, 'cbeta_index')->textInput(); ?>
+    <div class="row">
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'cd')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'context')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'cbeta_index')->textInput(); ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?php echo Html::submitButton(Yii::t('backend', 'Search'), ['class' => 'btn btn-primary']) ?>

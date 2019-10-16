@@ -17,13 +17,14 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'cd',
             'entity_name_han',
-            // 'entity_name_tb',
-            // 'text_han:ntext',
+            'entity_name_tb',
+            'entity_name_sans',
             [
         		'attribute'=>'text_han',
         		'format'=>'ntext',
         	],
-            // 'text_tb:ntext',
+            'text_tb:ntext',
+            'text_sans:ntext',
             [
                 'attribute' => 'funcs',
                 'value' => $model->funcsText
@@ -32,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'sutra_id',
                 'value' => $model->sutra->entity_name_tc
             ],
-            // 'context:ntext',
             [
         		'attribute'=>'context',
         		'format'=>'ntext',
@@ -44,6 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->createdBy->userProfile->fullname
             ],
         ],
+        'template' => '<tr><th style="width:120px;">{label}</th><td>{value}</td></tr>',
     ]) ?>
 
 </div>

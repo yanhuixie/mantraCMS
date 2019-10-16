@@ -13,8 +13,10 @@ use yii\behaviors\BlameableBehavior;
  * @property string $cd
  * @property string $entity_name_han 咒名汉文
  * @property string $entity_name_tb 咒名藏文
+ * @property string $entity_name_sans 咒名梵文
  * @property string $text_han 咒语汉文
  * @property string $text_tb 咒语藏文
+ * @property string $text_sans 咒语梵文
  * @property int $sutra_id
  * @property string $context
  * @property string $cbeta_index
@@ -50,12 +52,14 @@ class Mantra extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
+            [['entity_name_han', 'entity_name_tb', 'entity_name_sans', 'text_sans', 'text_han', 'text_tb', 'context', 'cbeta_index'], 'filter', 'filter'=>'\yii\helpers\HtmlPurifier::process'],
+
             [['entity_name_han', 'text_han', 'context', 'sutra_id', 'funcs'], 'required'],
-            [['text_han', 'text_tb', 'context'], 'string'],
+            [['text_han', 'text_tb', 'text_sans', 'context'], 'string'],
             [['created_at', 'funcs'], 'safe'],
             [['created_by'], 'integer'],
             [['cd'], 'string', 'max' => 45],
-            [['entity_name_han', 'entity_name_tb', 'cbeta_index'], 'string', 'max' => 100],
+            [['entity_name_han', 'entity_name_tb', 'entity_name_sans', 'cbeta_index'], 'string', 'max' => 100],
 
             [['sutra_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sutra::className(), 'targetAttribute' => ['sutra_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -76,14 +80,14 @@ class Mantra extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            [['entity_name_han', 'entity_name_tb', 'text_han', 'text_tb', 'context', 'cbeta_index'], 'filter', 'filter'=>'\yii\helpers\HtmlPurifier::process'],
-
             'id' => Yii::t('common', 'ID'),
             'cd' => '咒编号',
-            'entity_name_han' => '咒名',
-            'entity_name_tb' => '咒名 藏文',
+            'entity_name_han' => '咒名汉文',
+            'entity_name_tb' => '咒名藏文',
+            'entity_name_sans' => '咒名梵文',
             'text_han' => '咒语汉文',
             'text_tb' => '咒语藏文',
+            'text_sans' => '咒语梵文',
             'context' => '前后文',
             'cbeta_index' => 'CBETA',
             'sutra_id' => '出处',
@@ -92,6 +96,7 @@ class Mantra extends \yii\db\ActiveRecord
             'createdBy' => '创建者',
             'mantraFuncs' => '功能',
             'funcs' => '功能',
+            'func_id' => '功能',
         ];
     }
 

@@ -254,6 +254,28 @@ class FuncController extends Controller
     }
 
     /**
+     * 
+     */
+    public function actionAutocomplete($q = null) 
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $out = ['results' => ['id' => '', 'text' => '']];
+        
+        if (!empty($q)) {
+            $sql = <<<EOF
+SELECT p.id AS id, p.name AS text 
+FROM func p 
+WHERE (p.name LIKE :fn )
+LIMIT 20
+EOF;
+            $data = Yii::$app->db->createCommand($sql, [':fn' => '%' . $q . '%'])->queryAll();
+            $out['results'] = array_values($data);
+        }
+
+        return $out;
+    }
+
+    /**
      * Finds the Func model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id

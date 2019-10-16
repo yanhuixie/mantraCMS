@@ -138,4 +138,15 @@ class Func extends \yii\db\ActiveRecord
     public function loadFuncs($ar, $attr){
         
     }
+
+    
+    /**
+     * @param $id
+     * @return string
+     */
+    public static function getName($id)
+    {
+        $model = self::findOne($id);
+        return $model ? $model->name : '';
+    }
 }

@@ -1,4 +1,6 @@
 <?php
+
+use common\models\Func;
 use yii\helpers\Url;
 use kartik\grid\GridView;
 use yii\web\JsExpression;
@@ -38,7 +40,25 @@ return [
     // ],
     [
         'class'=>'\kartik\grid\DataColumn',
-        'attribute'=>'funcs',
+        'attribute'=>'func_id',
+        'filterType' => GridView::FILTER_SELECT2,
+	    'filterInputOptions' => ['placeholder' => '功能'],
+		'filterWidgetOptions' => [
+			'model' => $searchModel,
+			'attribute' => 'func_id',
+			'initValueText' => Func::getName($searchModel->func_id) ,
+			'pluginOptions'=>[
+				'allowClear' => true,
+				'ajax' => [
+					'url' => Url::to(['/func/autocomplete']),
+					'dataType' => 'json',
+					'data' => new JsExpression('function(params) { return {q:params.term}; }')
+				],
+				'escapeMarkup' => new JsExpression('function (markup) { return markup; }'),
+				'templateResult' => new JsExpression('function(city) { return city.text; }'),
+				'templateSelection' => new JsExpression('function (city) { return city.text; }'),
+			]
+		],
         'value' => function($model){
             return $model->funcsText;
         }
@@ -50,7 +70,7 @@ return [
 	    'filterInputOptions' => ['placeholder' => '经名'],
 		'filterWidgetOptions' => [
 			'model' => $searchModel,
-			'attribute' => 'school_id',
+			'attribute' => 'sutra_id',
 			'initValueText' => $searchModel->sutra ? $searchModel->sutra->entity_name_tc : '',
 			'pluginOptions'=>[
 				'allowClear' => true,

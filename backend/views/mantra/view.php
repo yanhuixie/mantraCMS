@@ -10,17 +10,26 @@ use yii\widgets\DetailView;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            // 'id',
             'cd',
             'entity_name_han',
-            // 'entity_name_tb',
-            // 'text_han:ntext',
+            'entity_name_tb',
+            'entity_name_sans',
             [
         		'attribute'=>'text_han',
         		'format'=>'raw',
-        		'value'=>'<textarea cols=100 rows=6 readonly=true>'.$model->text_han.'</textarea>',
+        		'value'=>'<textarea cols=100 rows=5 readonly=true>'.$model->text_han.'</textarea>',
         	],
-            // 'text_tb:ntext',
+            [
+        		'attribute'=>'text_tb',
+        		'format'=>'raw',
+        		'value'=>'<textarea cols=100 rows=5 readonly=true>'.$model->text_tb.'</textarea>',
+            ],
+            [
+        		'attribute'=>'text_sans',
+        		'format'=>'raw',
+        		'value'=>'<textarea cols=100 rows=5 readonly=true>'.$model->text_sans.'</textarea>',
+        	],
             [
                 'attribute' => 'funcs',
                 'value' => $model->funcsText
@@ -29,7 +38,6 @@ use yii\widgets\DetailView;
                 'attribute' => 'sutra_id',
                 'value' => $model->sutra->entity_name_tc
             ],
-            // 'context:ntext',
             [
         		'attribute'=>'context',
         		'format'=>'raw',

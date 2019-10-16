@@ -11,14 +11,16 @@ use common\models\Mantra;
  * MantraSearch represents the model behind the search form about `common\models\Mantra`.
  */
 class MantraSearch extends Mantra
-{
+{    
+    public $func_id = null; //检索用
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'sutra_id', 'created_by'], 'integer'],
+            [['id', 'sutra_id', 'func_id', 'created_by'], 'integer'],
             [['cd', 'entity_name_han', 'entity_name_tb', 'text_han', 'text_tb', 'context', 'cbeta_index', 'created_at'], 'safe'],
         ];
     }
@@ -41,7 +43,7 @@ class MantraSearch extends Mantra
      */
     public function search($params)
     {
-        $query = Mantra::find();
+        $query = Mantra::find()->joinWith('mantraFuncs');
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -61,6 +63,12 @@ class MantraSearch extends Mantra
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
         ]);
+
+        if($this->func_id){
+            $query->andFilterWhere([
+                'mantra_func.func_id' => $this->func_id,
+            ]);
+        }
 
         $query->andFilterWhere(['like', 'cd', $this->cd])
             ->andFilterWhere(['like', 'entity_name_han', $this->entity_name_han])
