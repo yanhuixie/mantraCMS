@@ -5,6 +5,7 @@ namespace common\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\BlameableBehavior;
+use trntv\filekit\behaviors\UploadBehavior;
 
 /**
  * This is the base model class for table "mantra".
@@ -22,6 +23,8 @@ use yii\behaviors\BlameableBehavior;
  * @property string $cbeta_index
  * @property string $created_at
  * @property integer $created_by
+ * @property string  $voice_base_url
+ * @property string  $voice_path
  *
  * @property \common\models\User $createdBy
  * @property \common\models\MantraFunc[] $mantraFuncs
@@ -32,6 +35,11 @@ class Mantra extends \yii\db\ActiveRecord
     // use \mootensai\relation\RelationTrait;
 
     public $funcs = [];
+
+    /**
+     * @var array
+     */
+    public $voice;
 
     /**
     * This function helps \mootensai\relation\RelationTrait runs faster
@@ -56,10 +64,11 @@ class Mantra extends \yii\db\ActiveRecord
 
             [['entity_name_han', 'text_han', 'context', 'sutra_id', 'funcs'], 'required'],
             [['text_han', 'text_tb', 'text_sans', 'context'], 'string'],
-            [['created_at', 'funcs'], 'safe'],
+            [['created_at', 'funcs', 'voice'], 'safe'],
             [['created_by'], 'integer'],
             [['cd'], 'string', 'max' => 45],
             [['entity_name_han', 'entity_name_tb', 'entity_name_sans', 'cbeta_index'], 'string', 'max' => 100],
+            [['voice_base_url', 'voice_path'], 'string', 'max' => 255],
 
             [['sutra_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sutra::className(), 'targetAttribute' => ['sutra_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
@@ -97,6 +106,7 @@ class Mantra extends \yii\db\ActiveRecord
             'mantraFuncs' => '功能',
             'funcs' => '功能',
             'func_id' => '功能',
+            'voice' => '录音',
         ];
     }
 
@@ -193,6 +203,12 @@ class Mantra extends \yii\db\ActiveRecord
                 'class' => BlameableBehavior::className(),
                 'createdByAttribute' => 'created_by',
                 'updatedByAttribute' => false,
+            ],
+            [
+                'class' => UploadBehavior::class,
+                'attribute' => 'voice',
+                'pathAttribute' => 'voice_path',
+                'baseUrlAttribute' => 'voice_base_url',
             ],
         ];
     }

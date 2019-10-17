@@ -6,6 +6,7 @@ use yii\helpers\Html;
 use yii\web\JsExpression;
 use yii\widgets\ActiveForm;
 use kartik\select2\Select2;
+use trntv\filekit\widget\Upload;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Mantra */
@@ -95,7 +96,23 @@ use kartik\select2\Select2;
     </div>
 </div>
 
-    <?= $form->field($model, 'context')->textarea(['rows' => 3]) ?>
+<div class="row">
+    <div class="col-md-8">
+        <?= $form->field($model, 'context')->textarea(['rows' => 3]) ?>
+    </div>
+    <div class="col-md-4">
+        <?= $form->field($model, 'voice')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice'
+            ])
+        ?>
+    </div>
+</div>
 
 	<?php if (!Yii::$app->request->isAjax){ ?>
 	  	<div class="form-group">

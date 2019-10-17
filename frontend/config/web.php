@@ -42,7 +42,52 @@ $config = [
             'enableAutoLogin' => true,
             'as afterLogin' => common\behaviors\LoginTimestampBehavior::class
         ]
-    ]
+    ],
+    'as globalAccess' => [
+        'class' => common\behaviors\GlobalAccessBehavior::class,
+        'rules' => [
+            [
+                'controllers'=>['maintenance'],
+                'allow' => true,
+                'roles' => ['?'],
+                'actions'=>['index', ]
+            ],
+            [
+                'controllers'=>['user/sign-in'],
+                'allow' => true,
+                'roles' => ['?'],
+                'actions'=>['login', 'request-password-reset', 'reset-password', 'activation']
+            ],
+            [
+                'controllers'=>['user/sign-in'],
+                'allow' => true,
+                'roles' => ['@'],
+                'actions'=>['logout']
+            ],
+        	[
+                'controllers'=>['site'],
+                'allow' => true,
+                'roles' => ['?', '@'],
+                'actions'=>['set-locale']
+            ],
+            [
+                'controllers'=>['site'],
+                'allow' => true,
+                'roles' => ['?', '@'],
+                'actions'=>['error', 'index']
+            ],
+            [
+                'controllers'=>['debug/default'],
+                'allow' => true,
+                'roles' => ['?'],
+            ],
+        	[
+        		'controllers'=>null,
+                'allow' => true,
+                'roles' => ['@'],
+        	]
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {

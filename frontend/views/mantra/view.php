@@ -38,6 +38,11 @@ $this->params['breadcrumbs'][] = $this->title;
         		'format'=>'ntext',
         	],
             'cbeta_index',
+            [
+        		'attribute'=>'voice',
+        		'format'=>'raw',
+        		'value'=>$model->voice_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_base_url, $model->voice_path) : '',
+        	],
             'created_at',
             [
                 'attribute' => 'created_by',
