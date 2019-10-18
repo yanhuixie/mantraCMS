@@ -17,10 +17,14 @@ return [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'entity_name_han',
     ],
-    // [
-    //     'class'=>'\kartik\grid\DataColumn',
-    //     'attribute'=>'entity_name_tb',
-    // ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'entity_name_tb',
+    ],
+    [
+        'class'=>'\kartik\grid\DataColumn',
+        'attribute'=>'entity_name_sans',
+    ],
     [
         'class'=>'\kartik\grid\DataColumn',
         'attribute'=>'funcs',

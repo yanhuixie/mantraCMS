@@ -1,5 +1,6 @@
 <?php
 
+use common\helpers\UserAgent;
 use common\models\Func;
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -11,6 +12,7 @@ use kartik\grid\GridView;
 use johnitvn\ajaxcrud\CrudAsset; 
 use johnitvn\ajaxcrud\BulkButtonWidget;
 use common\models\Sutra;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\search\MantraSearch */
@@ -127,10 +129,37 @@ $dataProvider->pagination->pageSize = 10;
         </div>
     </div>
 </div>
-    
-
 
 <div class="mantra-index">
+<?php if(UserAgent::chkMobile()){ $dataProvider->pagination->pageSize = 10; ?>
+    <div id="listview_mantra">
+    <?= ListView::widget([
+        'dataProvider' => $dataProvider,
+        'itemView' => '_item',
+        'viewParams' => [//传参数给每一个item
+            
+        ],
+        // 'layout' => '{items}<div class="col-md-12 sum-pager">{summary}{pager}</div>',//整个ListView布局
+        'itemOptions' => [//针对渲染的单个item
+            'tag' => 'div',
+            'class' => 'col-md-4'
+        ],
+        // 'options' => [//针对整个ListView
+        //     'tag' => 'div',
+        //     'class' => 'col-lg-3'
+        // ],
+        'pager' => [
+            //'options' => ['class' => 'hidden'],//关闭分页（默认开启）
+            /* 分页按钮设置 */
+            'maxButtonCount' => 5,//最多显示几个分页按钮
+            'firstPageLabel' => '首页',
+            'prevPageLabel' => '上一页',
+            'nextPageLabel' => '下一页',
+            'lastPageLabel' => '尾页'
+        ]
+    ]);?>
+    </div>
+<?php } else { ?>
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -149,7 +178,7 @@ $dataProvider->pagination->pageSize = 10;
             'panel' => [
                 'type' => 'primary', 
                 'heading' => '<i class="glyphicon glyphicon-list"></i> 检索结果 列表',
-                'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
+                'before'=>'<em>* 可以像Excel那样拖拽调整每列宽度。</em>',
                 'after'=>'<div class="clearfix"></div>',
             ],
             'containerOptions'=>[
@@ -157,6 +186,7 @@ $dataProvider->pagination->pageSize = 10;
             ]
         ])?>
     </div>
+<?php } ?>
 </div>
 
 <?php \common\widgets\JsBlock::begin() ?>
