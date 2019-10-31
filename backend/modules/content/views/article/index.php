@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
     'dataProvider' => $dataProvider,
     'filterModel' => $searchModel,
     'options' => [
-        'class' => 'grid-view table-responsive',
+        'class' => 'grid-view ', //table-responsive
     ],
     'columns' => [
         [
@@ -79,11 +79,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => DateTimeWidget::widget([
                 'model' => $searchModel,
                 'attribute' => 'published_at',
-                'phpDatetimeFormat' => 'dd.MM.yyyy',
-                'momentDatetimeFormat' => 'DD.MM.YYYY',
+                'phpDatetimeFormat' => 'yyyy-MM-dd',
+                    'momentDatetimeFormat' => 'YYYY-MM-DD',
                 'clientEvents' => [
                     'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")'),
                 ],
+                'locale' => 'zh_cn'
             ]),
         ],
         [
@@ -93,11 +94,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'filter' => DateTimeWidget::widget([
                 'model' => $searchModel,
                 'attribute' => 'created_at',
-                'phpDatetimeFormat' => 'dd.MM.yyyy',
-                'momentDatetimeFormat' => 'DD.MM.YYYY',
+                'phpDatetimeFormat' => 'yyyy-MM-dd',
+                'momentDatetimeFormat' => 'YYYY-MM-DD',
                 'clientEvents' => [
                     'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")'),
                 ],
+                'locale' => 'zh_cn'
             ]),
         ],
         [

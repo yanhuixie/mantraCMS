@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?php echo Html::a(Yii::t('backend', 'Create {modelClass}', [
-    'modelClass' => 'User',
+    'modelClass' => Yii::t('backend', 'User'),
 ]), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'options' => [
-            'class' => 'grid-view table-responsive'
+            'class' => 'grid-view ', //table-responsive 导致date control显示不完整
         ],
         'columns' => [
             'id',
@@ -46,11 +46,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => DateTimeWidget::widget([
                     'model' => $searchModel,
                     'attribute' => 'created_at',
-                    'phpDatetimeFormat' => 'dd.MM.yyyy',
-                    'momentDatetimeFormat' => 'DD.MM.YYYY',
+                    'phpDatetimeFormat' => 'yyyy-MM-dd',
+                    'momentDatetimeFormat' => 'YYYY-MM-DD',
                     'clientEvents' => [
                         'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
                     ],
+                    'locale' => 'zh_cn'
                 ])
             ],
             [
@@ -59,11 +60,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filter' => DateTimeWidget::widget([
                     'model' => $searchModel,
                     'attribute' => 'logged_at',
-                    'phpDatetimeFormat' => 'dd.MM.yyyy',
-                    'momentDatetimeFormat' => 'DD.MM.YYYY',
+                    'phpDatetimeFormat' => 'yyyy-MM-dd',
+                    'momentDatetimeFormat' => 'YYYY-MM-DD',
                     'clientEvents' => [
                         'dp.change' => new JsExpression('(e) => $(e.target).find("input").trigger("change.yiiGridView")')
                     ],
+                    'locale' => 'zh_cn'
                 ])
             ],
             // 'updated_at',

@@ -105,7 +105,8 @@ return [
         'attribute'=>'created_by',
         'value' => function($model){
             return $model->createdBy->userProfile->fullname;
-        }
+        },
+        'filter' => false
     ],
     [
         'class' => 'kartik\grid\ActionColumn',

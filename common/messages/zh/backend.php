@@ -150,6 +150,7 @@ return [
     'User Registrations' => '用户注册数',
     'Username' => '用户名',
     'Users' => '用户',
+    'User' => '用户',
     'View all' => '查看全部',
     'View user' => '查看用户',
     'Web Server' => 'Web 服务',
