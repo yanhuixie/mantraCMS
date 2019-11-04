@@ -6,7 +6,7 @@
 下载后解压缩到工程根目录。
 
 ### mysql dump file
-链接: https://pan.baidu.com/s/1HTfJb2fUGvlxAG2LzAmp8g 提取码: 4t83  
+链接: 链接: https://pan.baidu.com/s/1lXNT5iFmSKCr6oXUalbv6g 提取码: pugq  
 
 ### Apache vhost configuration (Apache或Nginx自行选择)
 ```shell
