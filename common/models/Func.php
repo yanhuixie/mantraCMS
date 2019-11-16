@@ -45,7 +45,9 @@ class Func extends \yii\db\ActiveRecord
             [['name'], 'required'],
             [['created_at'], 'safe'],
             [['created_by'], 'integer'],
-            [['name'], 'string', 'max' => 45]
+            [['name'], 'string', 'max' => 45],
+
+            [['name'], 'unique'],
         ];
     }
 
