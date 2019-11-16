@@ -50,7 +50,7 @@ class Sutra extends \yii\db\ActiveRecord
             [['cd'], 'string', 'max' => 45],
             [['entity_name_tc', 'entity_name_sc'], 'string', 'max' => 100],
             [['memo'], 'string', 'max' => 200],
-            [['entity_name_tc'], 'unique']
+            [['cd', 'entity_name_tc'], 'unique']
         ];
     }
 
