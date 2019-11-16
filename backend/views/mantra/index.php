@@ -33,7 +33,13 @@ $dataProvider->pagination->pageSize = 10;
                     ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Reset Grid']).
                     '{export}'
                 ],
-            ],          
+            ],
+            'pager' => [
+                'firstPageLabel' => '首页',
+                'prevPageLabel' => '上一页',
+                'nextPageLabel' => '下一页',
+                'lastPageLabel' => '尾页'
+            ],
             'striped' => true,
             'condensed' => true,
             'responsive' => true,          
