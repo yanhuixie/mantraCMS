@@ -64,10 +64,29 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
 
 </div>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; LQSIC <?php echo date('Y') ?></p>
-        <p class="pull-right">LQSIC</p>
-    </div>
+<footer class="footer" >
+<div class="container" style="text-shadow: 0 0 2px #b7b7b7;">
+    <?php 
+    $cpright = Yii::$app->keyStorage->get('frontend.copyright',  'LQSIC');
+    $pwdby   = Yii::$app->keyStorage->get('frontend.poweredby',  'LQSIC');
+    $icpreg  = Yii::$app->keyStorage->get('frontend.icp-reg-no', '');
+    $gapreg  = Yii::$app->keyStorage->get('frontend.ga-reg-no',  '');  $garegNo = preg_replace('/\D/s', '', $gapreg);
+    $conQQ   = Yii::$app->keyStorage->get('frontend.contact.qq', '');  $conQQNo = preg_replace('/ /s',  '', $conQQ);
+    $conTEL  = Yii::$app->keyStorage->get('frontend.contact.tel','');
+    ?>
+    <span class="pull-left">
+      <i class="fa fa-copyright" aria-hidden="true"></i> <?=$cpright .' '. date('Y') ?>. <!-- Powered by <?=$pwdby?>. --> 
+      <?php if($conQQ || $conTEL){ ?>
+          <span class="">联系我们&nbsp;
+          <?php if($conTEL){ ?><i class="fa fa-phone-square" aria-hidden="true"></i> <?=$conTEL?> &nbsp; <?php }?>
+          <?php if($conQQ){  ?><a href="http://wpa.qq.com/msgrd?v=3&uin=<?=$conQQNo?>&site=qq&menu=yes" target="_blank"><i class="fa fa-qq" aria-hidden="true"></i> <?=$conQQ?></a> <?php }?>
+      <?php }?>
+      </span>
+    </span>
+   <span class="pull-right" style="font-size:.85em;">
+       <a target="_blank" href="http://www.miitbeian.gov.cn/"> <?=$icpreg ?></a><?=$icpreg ? ' | ' : ''?>
+       <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=<?=$garegNo?>"><?=$gapreg?></a>
+   </span>
+</div>
 </footer>
 <?php $this->endContent() ?>
