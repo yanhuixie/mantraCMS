@@ -50,7 +50,7 @@ class Sutra extends \yii\db\ActiveRecord
             [['cd'], 'string', 'max' => 45],
             [['entity_name_tc', 'entity_name_sc'], 'string', 'max' => 100],
             [['memo'], 'string', 'max' => 200],
-            [['entity_name_tc'], 'unique']
+            [['cd', 'entity_name_tc', 'entity_name_sc'], 'unique']
         ];
     }
 
@@ -70,7 +70,7 @@ class Sutra extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('common', 'ID'),
             'cd' => '编码',
-            'entity_name_tc' => '实体经名',
+            'entity_name_tc' => '实体经名 正体',
             'entity_name_sc' => '实体经名 简体',
             'vol_amount' => '卷数',
             'vol_amount_actual' => '卷数 实际',

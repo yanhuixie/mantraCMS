@@ -172,6 +172,13 @@ $dataProvider->pagination->pageSize = 10;
                     '{export}'
                 ],
             ], 
+            'pager' => [
+                'maxButtonCount' => 10,//最多显示几个分页按钮
+                'firstPageLabel' => '首页',
+                'prevPageLabel' => '上一页',
+                'nextPageLabel' => '下一页',
+                'lastPageLabel' => '尾页'
+            ],
             'striped' => true,
             'condensed' => true,
             'responsive' => true,          

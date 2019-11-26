@@ -69,6 +69,7 @@ class Mantra extends \yii\db\ActiveRecord
             [['cd'], 'string', 'max' => 45],
             [['entity_name_han', 'entity_name_tb', 'entity_name_sans', 'cbeta_index'], 'string', 'max' => 100],
             [['voice_base_url', 'voice_path'], 'string', 'max' => 255],
+            [['cd', 'entity_name_han'], 'unique'],
 
             [['sutra_id'], 'exist', 'skipOnError' => true, 'targetClass' => Sutra::className(), 'targetAttribute' => ['sutra_id' => 'id']],
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],

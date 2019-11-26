@@ -21,7 +21,7 @@ class MantraSearch extends Mantra
     {
         return [
             [['id', 'sutra_id', 'func_id', 'created_by'], 'integer'],
-            [['cd', 'entity_name_han', 'entity_name_tb', 'text_han', 'text_tb', 'context', 'cbeta_index', 'created_at'], 'safe'],
+            [['cd', 'entity_name_han', 'entity_name_sans', 'entity_name_tb', 'text_han', 'text_tb', 'text_sans', 'context', 'cbeta_index', 'created_at'], 'safe'],
         ];
     }
 
@@ -73,8 +73,10 @@ class MantraSearch extends Mantra
         $query->andFilterWhere(['like', 'cd', $this->cd])
             ->andFilterWhere(['like', 'entity_name_han', $this->entity_name_han])
             ->andFilterWhere(['like', 'entity_name_tb', $this->entity_name_tb])
+            ->andFilterWhere(['like', 'entity_name_sans', $this->entity_name_sans])
             ->andFilterWhere(['like', 'text_han', $this->text_han])
             ->andFilterWhere(['like', 'text_tb', $this->text_tb])
+            ->andFilterWhere(['like', 'text_sans', $this->text_sans])
             ->andFilterWhere(['like', 'context', $this->context])
             ->andFilterWhere(['like', 'cbeta_index', $this->cbeta_index]);
 
