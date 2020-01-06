@@ -12,7 +12,7 @@ use trntv\filekit\widget\Upload;
 /* @var $model common\models\Mantra */
 /* @var $form yii\widgets\ActiveForm */
 
-
+$text_rows = 6;
 ?>
 
 <div class="mantra-form">
@@ -20,30 +20,105 @@ use trntv\filekit\widget\Upload;
 
 <div class="row">
     <div class="col-md-4">
+        <?= $form->field($model, 'entity_name_han')->textInput(['maxlength' => true]) ?>
+    </div>
+    <div class="col-md-4">
         <?= $form->field($model, 'cd')->textInput(['maxlength' => true]) ?>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-4">
         <?= $form->field($model, 'cbeta_index')->textInput(['maxlength' => true]) ?>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-4">
-        <?= $form->field($model, 'entity_name_han')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-9">
+        <?= $form->field($model, 'text_han')->textarea(['rows' => $text_rows]) ?>
     </div>
-    <div class="col-md-4">
-        <?= $form->field($model, 'entity_name_tb')->textInput(['maxlength' => true]) ?>
-    </div>
-    <div class="col-md-4">
-        <?= $form->field($model, 'entity_name_sans')->textInput(['maxlength' => true]) ?>
+    <div class="col-md-3">
+        <?= $form->field($model, 'voice')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice'
+            ])
+        ?>
     </div>
 </div>
 
-    <?= $form->field($model, 'text_han')->textarea(['rows' => 5]) ?>
+<div class="row">
+    <div class="col-md-9">
+        <?= $form->field($model, 'text_tb')->textarea(['rows' => $text_rows]) ?>
+        </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'voice_tb')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice_tb'
+            ])
+        ?>
+    </div>
+</div>
 
-    <?= $form->field($model, 'text_tb')->textarea(['rows' => 5]) ?>
+<div class="row">
+    <div class="col-md-9">
+        <?= $form->field($model, 'text_sans')->textarea(['rows' => $text_rows]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'voice_sans')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice_sans'
+            ])
+        ?>
+    </div>
+</div>
 
-    <?= $form->field($model, 'text_sans')->textarea(['rows' => 5]) ?>
+<div class="row">
+    <div class="col-md-9">
+        <?= $form->field($model, 'text_mongol')->textarea(['rows' => $text_rows]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'voice_mongol')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice_mongol'
+            ])
+        ?>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9">
+        <?= $form->field($model, 'text_manchu')->textarea(['rows' => $text_rows]) ?>
+    </div>
+    <div class="col-md-3">
+        <?= $form->field($model, 'voice_manchu')->widget(
+            Upload::class,
+            [
+                'url' => ['/file/storage/upload'],
+                'maxFileSize' => 5000000, // 5 MiB,
+                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
+                'multiple' => false,
+                'id' => 'file_voice_manchu'
+            ])
+        ?>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-6">
@@ -97,20 +172,8 @@ use trntv\filekit\widget\Upload;
 </div>
 
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
         <?= $form->field($model, 'context')->textarea(['rows' => 3]) ?>
-    </div>
-    <div class="col-md-4">
-        <?= $form->field($model, 'voice')->widget(
-            Upload::class,
-            [
-                'url' => ['/file/storage/upload'],
-                'maxFileSize' => 5000000, // 5 MiB,
-                'acceptFileTypes' => new JsExpression('/(\.|\/)(mp3|ogg)$/i'),
-                'multiple' => false,
-                'id' => 'file_voice'
-            ])
-        ?>
     </div>
 </div>
 

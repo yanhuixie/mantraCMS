@@ -17,14 +17,53 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'id',
             'cd',
             'entity_name_han',
-            'entity_name_tb',
-            'entity_name_sans',
+            // 'entity_name_tb',
+            // 'entity_name_sans',
             [
         		'attribute'=>'text_han',
         		'format'=>'ntext',
+            ],
+            [
+        		'attribute'=>'voice',
+        		'format'=>'raw',
+        		'value'=>$model->voice_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_base_url, $model->voice_path) : '',
         	],
-            'text_tb:ntext',
-            'text_sans:ntext',
+            [
+        		'attribute'=>'text_tb',
+        		'format'=>'ntext',
+            ],
+            [
+        		'attribute'=>'voice_tb',
+        		'format'=>'raw',
+        		'value'=>$model->voice_tb_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_tb_base_url, $model->voice_tb_path) : '',
+        	],
+            [
+        		'attribute'=>'text_sans',
+        		'format'=>'ntext',
+            ],
+            [
+        		'attribute'=>'voice_sans',
+        		'format'=>'raw',
+        		'value'=>$model->voice_sans_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_sans_base_url, $model->voice_sans_path) : '',
+            ],
+            [
+        		'attribute'=>'text_mongol',
+        		'format'=>'ntext',
+            ],
+            [
+        		'attribute'=>'voice_mongol',
+        		'format'=>'raw',
+        		'value'=>$model->voice_mongol_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_mongol_base_url, $model->voice_mongol_path) : '',
+            ],
+            [
+        		'attribute'=>'text_manchu',
+        		'format'=>'ntext',
+            ],
+            [
+        		'attribute'=>'voice_manchu',
+        		'format'=>'raw',
+        		'value'=>$model->voice_manchu_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_manchu_base_url, $model->voice_manchu_path) : '',
+        	],
             [
                 'attribute' => 'funcs',
                 'value' => $model->funcsText
@@ -38,11 +77,6 @@ $this->params['breadcrumbs'][] = $this->title;
         		'format'=>'ntext',
         	],
             'cbeta_index',
-            [
-        		'attribute'=>'voice',
-        		'format'=>'raw',
-        		'value'=>$model->voice_path ? sprintf('<audio src="%s%s" controls="controls">浏览器不支持播放</audio>', $model->voice_base_url, $model->voice_path) : '',
-        	],
             'created_at',
             [
                 'attribute' => 'created_by',

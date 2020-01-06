@@ -43,7 +43,6 @@ $dataProvider->pagination->pageSize = 10;
         'method' => 'get',
     ]); ?>
 
-
     <div class="row">
         <div class="col-md-4">
             <?php echo $form->field($searchModel, 'sutra_id')->widget(Select2::classname(), [
@@ -88,22 +87,22 @@ $dataProvider->pagination->pageSize = 10;
         <?php echo $form->field($searchModel, 'entity_name_han')->textInput(); ?>
         </div>
         <div class="col-md-4">
-        <?php echo $form->field($searchModel, 'entity_name_tb')->textInput(); ?>
-        </div>
-        <div class="col-md-4">
-        <?php echo $form->field($searchModel, 'entity_name_sans')->textInput(); ?>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
         <?php echo $form->field($searchModel, 'text_han')->textInput(); ?>
         </div>
         <div class="col-md-4">
         <?php echo $form->field($searchModel, 'text_tb')->textInput(); ?>
         </div>
+    </div>
+
+    <div class="row">
         <div class="col-md-4">
         <?php echo $form->field($searchModel, 'text_sans')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'text_mongol')->textInput(); ?>
+        </div>
+        <div class="col-md-4">
+        <?php echo $form->field($searchModel, 'text_manchu')->textInput(); ?>
         </div>
     </div>
 

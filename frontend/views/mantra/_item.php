@@ -15,8 +15,8 @@ use yii\widgets\DetailView;
             'format'=>'raw',
             'value' => Html::a($model->entity_name_han, Url::to(['/mantra/view', 'id'=>$model->id])),
         ],
-        'entity_name_tb',
-        'entity_name_sans',
+        // 'entity_name_tb',
+        // 'entity_name_sans',
         [
             'attribute' => 'funcs',
             'value' => $model->funcsText
