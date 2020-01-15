@@ -84,7 +84,7 @@ $this->beginContent('@frontend/views/layouts/_clear.php')
       </span>
     </span>
    <span class="pull-right" style="font-size:.85em;">
-       <a target="_blank" href="http://www.miitbeian.gov.cn/"> <?=$icpreg ?></a><?=$icpreg ? ' | ' : ''?>
+       <a target="_blank" href="http://beian.miit.gov.cn/"> <?=$icpreg ?></a><?=$icpreg ? ' | ' : ''?>
        <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=<?=$garegNo?>"><?=$gapreg?></a>
    </span>
 </div>
